@@ -57,7 +57,7 @@ trait Chan {
 
 object Application extends Chan {
   def main(args: Array[String]): Unit = {
-    val boardSymbol = "s"
+    val boardSymbol = if (args.isEmpty) "o" else args(0)
     try {
       val chanPages = getPages(boardSymbol, Http(_).timeout(3000, 3000).asString)
       val randomPage = getRandomPage(chanPages)
@@ -81,9 +81,3 @@ object Application extends Chan {
     }
   }
 }
-
-/**
-  * scalaj: https://github.com/scalaj/scalaj-http
-  *
-  * 4. add ability to save image to disk
-  */
